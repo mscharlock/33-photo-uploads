@@ -3,18 +3,18 @@ import * as utils from '../../lib/utils';
 
 class ProfileForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = props.profile ?
       {...props.profile, preview: ''} :
-      {bio: '', preview: '', avatar: null}
+      {bio: '', preview: '', avatar: null};
 
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
     let {type, name} = e.target;
-    if(name === 'bio') this.setState({bio: e.target.value})
+    if(name === 'bio') this.setState({bio: e.target.value});
     if(name === 'avatar') {
       let {files} = e.target;
       let avatar = files[0];
@@ -34,10 +34,10 @@ class ProfileForm extends React.Component {
   render() {
     return (
       <form
-        className = "profile-form";
+        className = "profile-form"
         onSubmit ={this.handleSubmit}>
 
-        <img src={this.state.preview} style={{"width": "25%"}}/>
+        <img src={this.state.preview} style={{'width': '25%'}}/>
         <input
           type="file"
           name="avatar"
@@ -53,7 +53,7 @@ class ProfileForm extends React.Component {
 
         <button type="submit">{this.props.buttonText}</button>
       </form>
-    )
+    );
   }
 }
 

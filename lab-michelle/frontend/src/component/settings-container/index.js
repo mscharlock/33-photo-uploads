@@ -5,9 +5,9 @@ import ProfileForm from '../profile-form';
 import {profileFetchRequest, profileCreateRequest} from '../../action/profile-actions';
 
 class SettingsContainer extends React.Component {
-  componentWillMount() {
-    this.props.profileFetch();
-  }
+  // componentWillMount() {
+  //   this.props.profileFetch();
+  // }
 
   render() {
     return(
@@ -21,7 +21,7 @@ class SettingsContainer extends React.Component {
       </div>
         )}
       </div>
-    )
+    );
   }
 }
 
@@ -35,4 +35,4 @@ let mapDispatchToProps = dispatch => ({
   profileFetch: () => dispatch(profileFetchRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
