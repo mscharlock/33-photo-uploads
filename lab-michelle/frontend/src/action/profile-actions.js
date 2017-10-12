@@ -21,7 +21,9 @@ export const profileFetchRequest = () => (dispatch, getState) => {
 };
 
 export const profileCreateRequest = profile => (dispatch, getState) => {
+  console.log('profile', profile);
   let {auth} = getState();
+  console.log('auth', auth);
   return superagent.post(`${__API_URL__}/profiles`)
   .set('Authorization', `Bearer ${auth}`)
   .field('bio', profile.bio)

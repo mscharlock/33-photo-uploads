@@ -31,6 +31,7 @@ export const basicAuth = (req, res, next) => {
 }
 
 export const bearerAuth = (req, res, next) => {
+  console.log('Are we getting to bearerAuth????')
   let {authorization} = req.headers
   if(!authorization)
     return next(createError(400, 'AUTH ERROR: no authorization header'))
@@ -49,6 +50,3 @@ export const bearerAuth = (req, res, next) => {
   })
   .catch(partial(createError, 401))
 }
-
-
-
