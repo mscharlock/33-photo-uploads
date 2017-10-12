@@ -12,7 +12,8 @@ class DashboardContainer extends React.Component {
     return (
       <div>
         <h2>hello world from the dashboard!</h2>
-        <PhotoForm/>
+        <PhotoForm
+          onComplete={this.props.photoCreate}/>
       </div>
     );
   }

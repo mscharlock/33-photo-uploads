@@ -5,24 +5,26 @@ class PhotoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      path: this.state.path,
+      file: this.state.file,
       desc: this.state.desc,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+//Just seeing if I can get desc to work first//
   handleChange(e) {
-    let {type, name} = e.target;
-    if (name === 'desc') this.setState({desc: e.target.value});
-    if (type === 'file') {
-      let {files} = e.target;
-      let path = files[0];
-      this.setState({path});
-
-      utils.photoToDataUrl(path)
-      .then()
-    }// let {type, name} = e.target;
+    this.setState({desc: e.target.value});
+    // let {type, name} = e.target;
+    // if (name === 'desc') this.setState({desc: e.target.value});
+    // if (type === 'file') {
+    //   let {files} = e.target;
+    //   let path = files[0];
+    //   this.setState({path});
+    //
+    //   utils.photoToDataUrl(path)
+    //   .then()
+    // let {type, name} = e.target;
     // if(name === 'desc') this.setState({desc: e.target.value});
     // if(type === 'file') {
     //   let {files} = e.target;
@@ -36,7 +38,8 @@ class PhotoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(yay)
+    this.props.onComplete(Object.assign({}, this.state));
+    this.setState({desc: ''});
     // this.props.onComplete(this.state); some kind of function
   }
 
