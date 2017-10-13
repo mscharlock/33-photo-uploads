@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as utils from '../../lib/utils';
 import PhotoForm from '../photo-form';
 import PhotoItem from '../photo-item';
-import {photosFetchRequest, photoCreateRequest} from '../../action/photo-actions';
+import {photosFetchRequest, photoCreateRequest, photoDeleteRequest} from '../../action/photo-actions';
 
 class DashboardContainer extends React.Component {
   componentWillMount() {
@@ -32,6 +32,7 @@ let mapStateToProps = state => ({
 let mapDispatchToProps = dispatch => ({
   photosFetch: () => dispatch(photosFetchRequest()),
   photoCreate: photo => dispatch (photoCreateRequest(photo)),
+  photoDelete: photo => dispatch (photoDeleteRequest(photo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

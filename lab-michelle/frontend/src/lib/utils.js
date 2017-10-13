@@ -5,7 +5,7 @@ export const classToggler = options => Object.keys(options).filter(key => !!opti
 export const map = (child, ...args) => Array.prototype.map.apply(child, args);
 export const filter = (child, ...args) => Array.prototype.filter.apply(child, args);
 export const reduce = (child, ...args) => Array.prototype.reduce.apply(child, args);
-
+// export const clearLocalStorageToken = () => localStorage.removeItem('token');
 export const cookieDelete = key => document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 
 export const cookieFetchAll = () => {
