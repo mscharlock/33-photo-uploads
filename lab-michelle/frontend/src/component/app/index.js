@@ -2,12 +2,13 @@ import React from 'react';
 import Navbar from '../navbar';
 import {connect} from 'react-redux';
 import * as utils from '../../lib/utils';
+// import HomeContainer from '../home-container';
 import {tokenSet} from '../../action/auth-actions';
 import LandingContainer from '../landing-container';
-import {BrowserRouter, Route} from 'react-router-dom';
 import SettingsContainer from '../settings-container';
-// import appStoreCreate from '../../lib/app-create-store';
 import DashboardContainer from '../dashboard-container';
+import {BrowserRouter, Route, Redirect} from 'react-router-dom';
+// import appStoreCreate from '../../lib/app-create-store';
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,8 +23,8 @@ class App extends React.Component {
             <div>
               <Navbar />
                 <Route path="/welcome/:auth" component={LandingContainer}/>
-                <Route exact path="/settings" component={() => this.props.auth ? <SettingsContainer/> : <redirect to="/" />}/>
-                <Route exact path="/" component={()=> this.props.auth ? <DashboardContainer/> : <redirect to="/"/>}/>
+                <Route exact path="/settings" component={() => this.props.auth ? <SettingsContainer/> : <Redirect to="/" />}/>
+                <Route exact path="/dashboard" component={()=> this.props.auth ? <DashboardContainer/> : <Redirect to="/"/>}/>
             </div>
           </BrowserRouter>
       </div>

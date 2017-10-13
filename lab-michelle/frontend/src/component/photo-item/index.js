@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PhotoForm from '../photo-form';
 import * as utils from '../../lib/utils';
-// import FontIcon from 'material-ui/FontIcon';
+import {GridTile} from 'material-ui/GridList';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteIcon from 'material-ui/svg-icons/content/delete-sweep';
 import {photoUpdateRequest, photoDeleteRequest} from '../../action/photo-actions';
 
 class PhotoItem extends React.Component {
@@ -21,15 +23,35 @@ class PhotoItem extends React.Component {
   render() {
     let {photo} = this.props;
 
+    const styles= {
+      gridList: {
+        'min-width': '45%',
+        'position': 'relative',
+      },
+      icons: {
+        'position': 'absolute',
+        'top': '5%',
+      },
+      edit: {
+        'color': '#ddd',
+        'left': '10%',
+      },
+      delete: {
+        'color': '#ddd',
+        'left': '2%',
+      },
+    };
+
     return (
-      <div className="photo-item">
-        <i onClick={() => this.props.photoDelete(photo)}>X</i>
-        <i onClick={this.toggleEdit}>Edit</i>
+      <GridTile className="photo-item" title={photo.description}>
+        <div style={styles.icons}>
+          <DeleteIcon style={styles.delete} onClick={() => this.props.photoDelete(photo)}/>
+          <EditIcon style={styles.edit} onClick={this.toggleEdit}/>
+        </div>
 
         {utils.renderIf(!this.state.editing,
           <div>
-            <img src={photo.url} style={{'width': '25%'}}/>
-            <p>{photo.description}</p>
+            <img src={photo.url} style={{'width': '100%'}}/>
           </div>
         )}
 
@@ -40,7 +62,7 @@ class PhotoItem extends React.Component {
             toggle = {this.toggleEdit}
             onComplete = {this.props.photoUpdate}/>
         )}
-        </div>
+        </GridTile>
     );
   }
 }

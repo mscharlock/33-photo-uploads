@@ -18,7 +18,7 @@ export const photoUpdate = photo => ({
 
 export const photoDelete = photo => ({
   type: 'PHOTO_DELETE',
-  payload: null,
+  payload: photo,
 });
 
 export const photosFetchRequest = photos => (dispatch, getState) => {
