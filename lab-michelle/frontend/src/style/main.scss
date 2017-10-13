@@ -19,7 +19,6 @@ header nav ul li a {
   background-color: white;
   padding: 0.5% 10%;
   font-size: 22px;
-  font-color: $black;
 }
 
 ul {
@@ -42,5 +41,9 @@ a {
   padding: 10%;
   width: 0 auto;
   height: 0 auto;
-  font-color: $white;
+  color: $white;
+}
+
+.pumpkin {
+  color: orange;
 }

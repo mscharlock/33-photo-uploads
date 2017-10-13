@@ -15,7 +15,8 @@ class LandingContainer extends React.Component {
 
     return (
       <div className="landing">
-        <h2>hello world from landing woooooo!</h2>
+        <h2>The Most Basic Instagram Clone Ever!</h2>
+        <p className='pumpkin'>So basic it smells like pumpkin spice</p>
         <AuthForm
           auth={params.auth}
           redirect={redirect}

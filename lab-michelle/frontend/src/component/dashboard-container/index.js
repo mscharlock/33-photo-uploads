@@ -13,7 +13,8 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <div className="dashboard-container">
-        <h2>hello world from the dashboard!</h2>
+        <h2>This dashboard is like so fetch!</h2>
+        <p className="pumpkin">Stop trying to make fetch happen</p>
         <PhotoForm
           buttonText="create"
           onComplete={this.props.photoCreate}/>
