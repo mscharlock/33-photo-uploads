@@ -5,9 +5,9 @@ import ProfileForm from '../profile-form';
 import {profileFetchRequest, profileCreateRequest} from '../../action/profile-actions';
 
 class SettingsContainer extends React.Component {
-  // componentWillMount() {
-  //   this.props.profileFetch();
-  // }
+  componentWillMount() {
+    if (!this.props.profile) this.props.profileFetch();
+  }
 
   render() {
     return(

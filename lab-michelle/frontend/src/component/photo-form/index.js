@@ -25,12 +25,12 @@ class PhotoForm extends React.Component {
       .catch(console.error);
     }
   }
-  
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete(Object.assign({}, this.state));
-    this.setState({desc: ''});
-    // this.props.onComplete(this.state); some kind of function
+    this.props.onComplete(this.state)
+    .then(() => this.setState({description: '', preview: '', photo: null}))
+    .then(() => this.props.toggle ? this.props.toggle() : undefined);
   }
 
   render() {
@@ -39,19 +39,22 @@ class PhotoForm extends React.Component {
       className = "photo-form"
       onSubmit ={this.handleSubmit}>
 
-      <img src={this.state.preview} style={{'width': '25%'}}/>
-      <input
-      type="file"
-      name="photo"
-      onChange={this.handleChange}/>
+      {utils.renderIf(this.state.preview || this.state.url,
+        <img src={this.state.preview} style={{'width': '25%'}}/>
+      )}
 
       <input
-      name="desc"
-      value={this.state.desc}
-      onChange={this.handleChange}>
-      </input>
+        type="file"
+        name="photo"
+        onChange={this.handleChange}/>
 
-      <button type="submit">Upload photo</button>
+      <input
+        type="text"
+        name="description"
+        value={this.state.description}
+        onChange={this.handleChange}/>
+
+      <button type="submit">{this.props.buttonText}</button>
       </form>
     );
   }
