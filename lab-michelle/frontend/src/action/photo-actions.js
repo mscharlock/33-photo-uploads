@@ -1,12 +1,13 @@
 import superagent from 'superagent';
+import * as utils from '../lib/utils';
+
+export const photosFetch = photos => ({
+  type: 'PHOTOS_FETCH',
+  payload: photos,
+});
 
 export const photoCreate = photo => ({
   type: 'PHOTO_CREATE',
-  payload: photo,
-});
-
-export const photoRead = photo => ({
-  type: 'PHOTO_READ',
   payload: photo,
 });
 
@@ -21,16 +22,36 @@ export const photoDelete = photo => ({
 });
 
 
+export const photosFetchRequest = photos => (dispatch, getState) => {
+  let {auth} = getState();
+  return superagent.get(`${__API_URL__}/photos/me`)
+  .set('Authorization', `Bearer ${auth}`)
+  .then(res => {
+    dispatch(photosFetch(res.body.data));
+    return res;
+  });
+};
+
 export const photoCreateRequest = photo => (dispatch, getState) => {
   let {auth} = getState();
-  //^ Not sure if I need this
-  return superagent.post(`${__API_URL__}/profiles`)
+  return superagent.post(`${__API_URL__}/photos`)
   .set('Authorization', `Bearer ${auth}`)
-  .field('desc', photo.desc)
-  .attach('imageFile', photo.file)
+  .field('description', photo.description)
+  .attach('photo', photo.photo)
   .then(res => {
-    localStorage.userId = res.body._id;
     dispatch(photoCreate(res.body));
+    return res;
+  });
+};
+
+export const photoUpdateRequest = photo => (dispatch, getState) => {
+  let {auth} = getState();
+  return superagent.put(`${__API_URL__})/photos/${photo._id}`)
+  .set('Authorization', `Bearer ${auth}`)
+  .field('description', photo.description)
+  .attach('photo', photo.photo)
+  .then(res => {
+    dispatch(photoDelete(photo));
     return res;
   });
 };

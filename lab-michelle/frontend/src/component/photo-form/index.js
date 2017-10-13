@@ -4,38 +4,28 @@ import * as utils from '../../lib/utils';
 class PhotoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
-      file: this.state.file,
-      desc: this.state.desc,
-    };
+    this.state = this.props.photo ?
+      {...this.props.photo, preview: ''} :
+      {description: '', preview: '', photo: null};
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-//Just seeing if I can get desc to work first//
   handleChange(e) {
-    this.setState({desc: e.target.value});
-    // let {type, name} = e.target;
-    // if (name === 'desc') this.setState({desc: e.target.value});
-    // if (type === 'file') {
-    //   let {files} = e.target;
-    //   let path = files[0];
-    //   this.setState({path});
-    //
-    //   utils.photoToDataUrl(path)
-    //   .then()
-    // let {type, name} = e.target;
-    // if(name === 'desc') this.setState({desc: e.target.value});
-    // if(type === 'file') {
-    //   let {files} = e.target;
-    //   let avatar = files[0];
-    //   this.setState({avatar});
-    //
-    //   utils.photoToDataUrl(avatar)
-    //   .then(preview => this.setState({preview}))
-    //   .catch(console.error);
-  }
+    let {name} = e.target;
+    if (name === 'description') this.setState({description: e.target.value});
+    if (name === 'photo') {
+      let {files} = e.target;
+      let photo = files[0];
+      this.setState({photo});
 
+      utils.photoToDataUrl(photo)
+      .then(preview => this.setState({preview}))
+      .catch(console.error);
+    }
+  }
+  
   handleSubmit(e) {
     e.preventDefault();
     this.props.onComplete(Object.assign({}, this.state));

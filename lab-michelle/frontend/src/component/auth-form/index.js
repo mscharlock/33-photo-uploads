@@ -34,7 +34,7 @@ class AuthForm extends React.Component {
       password: this.state.password,
       email: this.state.email,
     })
-    .then(() => this.props.redirect('/dashboard'))
+    .then(() => this.props.redirect('/'))
     .catch(error => {
       console.error(error);
       this.setState({error});
@@ -52,11 +52,11 @@ class AuthForm extends React.Component {
         )}
 
         <input
-        type="username"
-        name="username"
-        placeholder="username"
-        value={this.state.username}
-        onChange = {this.handleChange}/>
+          type="text"
+          name="username"
+          placeholder="username"
+          value={this.state.username}
+          onChange = {this.handleChange}/>
 
         {utils.renderIf(this.state.passwordError,
           <span className="tooltip">{this.state.passwordError}</span>
@@ -73,12 +73,14 @@ class AuthForm extends React.Component {
             <span className="tooltip">{this.state.emailError}</span>
           )}
 
+          {utils.renderIf(this.props.auth === 'signup',
           <input
-          type="email"
-          name="email"
-          placeholder="email"
-          value={this.state.email}
-          onChange = {this.handleChange}/>
+            type="email"
+            name="email"
+            placeholder="email"
+            value={this.state.email}
+            onChange = {this.handleChange}/>
+          )}
 
         <button type = "submit">{this.props.auth}</button>
       </form>
