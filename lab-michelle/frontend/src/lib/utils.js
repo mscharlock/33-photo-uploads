@@ -11,8 +11,8 @@ export const cookieDelete = key => document.cookie = `${key}=; expires=Thu, 01 J
 export const cookieFetch = key => {
   let cookies = Object.assign(...document.cookie.split(';'))
     .map(cookie => {
-      let [k, value] = cookie.split('=');
-      return { [k.trim()]: value };
+      let [key, value] = cookie.split('=');
+      return { [key.trim()]: value };
     });
   return cookies[key];
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PhotoForm from '../photo-form';
 import * as utils from '../../lib/utils';
-import FontIcon from 'material-ui/FontIcon';
+// import FontIcon from 'material-ui/FontIcon';
 import {photoUpdateRequest, photoDeleteRequest} from '../../action/photo-actions';
 
 class PhotoItem extends React.Component {
