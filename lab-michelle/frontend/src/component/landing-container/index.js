@@ -14,7 +14,7 @@ class LandingContainer extends React.Component {
     let redirect = path => this.props.history.replace(path);
 
     return (
-      <div>
+      <div className="landing">
         <h2>hello world from landing woooooo!</h2>
         <AuthForm
           auth={params.auth}

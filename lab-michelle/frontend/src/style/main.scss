@@ -13,7 +13,34 @@ $white: #eee;
   background-color: $primary;
 }
 
-header nav ul li {
-  display: block;
+header nav ul li a {
+  display: inline-block;
+  float: left;
   background-color: white;
+  padding: 0.5% 10%;
+  font-size: 22px;
+  font-color: $black;
+}
+
+ul {
+  list-style: none;
+  background: $white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.landing {
+  padding: 10%;
+  width: 0 auto;
+  height: 0 auto;
+  font-color: $white;
+}
+
+.dashboard-container {
+  padding: 10%;
+  width: 0 auto;
+  height: 0 auto;
+  font-color: $white;
 }
